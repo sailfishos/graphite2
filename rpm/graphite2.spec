@@ -2,7 +2,7 @@ Name:       graphite2
 Summary:    A smart font system for complex lesser-known languages of the world
 Version:    1.3.14
 Release:    1
-License:    LGPLv2.1+ or GPLv2+ or MPLv1.1
+License:    (LGPLv2+ or GPLv2+ or MPLv1.1) and (Netscape or GPLv2+ or LGPLv2+)
 URL:        http://graphite.sil.org
 Source0:    %{name}-%{version}.tar.bz2
 BuildRequires: pkgconfig(freetype2)
