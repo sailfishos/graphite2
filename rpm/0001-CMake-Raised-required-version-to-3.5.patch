@@ -1,0 +1,100 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Heiko Becker <mail@heiko-becker.de>
+Date: Thu, 20 Feb 2025 22:37:44 +0100
+Subject: [PATCH] CMake: Raised required version to 3.5
+
+CMake >= 4.0.0-rc1 removed compatibility with versions < 3.5 and errors
+out with such versions passed to cmake_minimum_required(). 3.5.0 has
+been released 9 years ago, so I'd assume it's available almost everywhere.
+
+Furthermore at least 3.1 was already required, because that's the
+version, which introduced CXX_STANDARD{,_REQUIRED}.
+
+Also remove the FATAL_ERROR part, which has been ignored since 2.6. and
+CMP0012 is now implicitly assumed to be NEW already.
+---
+ CMakeLists.txt                    | 3 +--
+ gr2fonttest/CMakeLists.txt        | 2 +-
+ src/CMakeLists.txt                | 3 +--
+ tests/bittwiddling/CMakeLists.txt | 2 +-
+ tests/json/CMakeLists.txt         | 2 +-
+ tests/sparsetest/CMakeLists.txt   | 2 +-
+ tests/utftest/CMakeLists.txt      | 2 +-
+ 7 files changed, 7 insertions(+), 9 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 496712d54f83f9fe6b74e1a98f017301926263ba..5b1f90ea20e177d8294a5b4ae65b2458eebdd6f4 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1,5 +1,4 @@
+-CMAKE_MINIMUM_REQUIRED(VERSION 2.8.0 FATAL_ERROR)
+-cmake_policy(SET CMP0012 NEW)
++cmake_minimum_required(VERSION 3.5.0)
+ include(TestBigEndian)
+ find_package(PythonInterp 3.6)
+ project(graphite2)
+diff --git a/gr2fonttest/CMakeLists.txt b/gr2fonttest/CMakeLists.txt
+index f995dd3dcd9fec9a46d602fbf46b2b01e6999547..5e1ea26825d456946a5e48cffd43850534c0a752 100644
+--- a/gr2fonttest/CMakeLists.txt
++++ b/gr2fonttest/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-CMAKE_MINIMUM_REQUIRED(VERSION 2.8.0 FATAL_ERROR)
++cmake_minimum_required(VERSION 3.5.0)
+ 
+ project(gr2fonttest)
+ 
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index b6ac26bfc2f900917b06e1702fd91851b48a44da..dd4fffa2a0eca46085f14c67231c6d0c3568a08e 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -19,9 +19,8 @@
+ #    Suite 500, Boston, MA 02110-1335, USA or visit their web page on the
+ #    internet at http://www.fsf.org/licenses/lgpl.html.
+ 
+-CMAKE_MINIMUM_REQUIRED(VERSION 2.8.0 FATAL_ERROR)
++cmake_minimum_required(VERSION 3.5.0)
+ project(graphite2_core)
+-cmake_policy(SET CMP0012 NEW)
+ INCLUDE(CheckCXXSourceCompiles)
+ 
+ set(GRAPHITE_API_CURRENT 3)
+diff --git a/tests/bittwiddling/CMakeLists.txt b/tests/bittwiddling/CMakeLists.txt
+index 372b4ac063de75482a92888773ef7e5a2c5c652d..a7cd01d9290a351f59ece71e7337345fdaebbbec 100644
+--- a/tests/bittwiddling/CMakeLists.txt
++++ b/tests/bittwiddling/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-CMAKE_MINIMUM_REQUIRED(VERSION 2.8.0 FATAL_ERROR)
++cmake_minimum_required(VERSION 3.5.0)
+ project(bits)
+ include(Graphite)
+ include_directories(${graphite2_core_SOURCE_DIR})
+diff --git a/tests/json/CMakeLists.txt b/tests/json/CMakeLists.txt
+index ae334276dfd1fca258e4ba3f47042bb27f4a7a65..cad0aae6535243543724f154a3da19d9a4a08e94 100644
+--- a/tests/json/CMakeLists.txt
++++ b/tests/json/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-CMAKE_MINIMUM_REQUIRED(VERSION 2.8.0 FATAL_ERROR)
++cmake_minimum_required(VERSION 3.5.0)
+ project(jsontest)
+ include(Graphite)
+ include_directories(${graphite2_core_SOURCE_DIR})
+diff --git a/tests/sparsetest/CMakeLists.txt b/tests/sparsetest/CMakeLists.txt
+index 3bfdc0c3e8e39a760db99d430531c60403487374..8c1583ea0f77a5df81654b7bc543599d3d825750 100644
+--- a/tests/sparsetest/CMakeLists.txt
++++ b/tests/sparsetest/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-CMAKE_MINIMUM_REQUIRED(VERSION 2.8.0 FATAL_ERROR)
++cmake_minimum_required(VERSION 3.5.0)
+ project(sparsetest)
+ include(Graphite)
+ include_directories(${graphite2_core_SOURCE_DIR})
+diff --git a/tests/utftest/CMakeLists.txt b/tests/utftest/CMakeLists.txt
+index dc50ca409458bf781db35f7b6ef33dc51c4ac281..94f8eb521bfffe3a07d4fd66dde2ad0e5bbb39c4 100644
+--- a/tests/utftest/CMakeLists.txt
++++ b/tests/utftest/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-CMAKE_MINIMUM_REQUIRED(VERSION 2.8.0 FATAL_ERROR)
++cmake_minimum_required(VERSION 3.5.0)
+ project(utftest)
+ include(Graphite)
+ include_directories(${graphite2_core_SOURCE_DIR})

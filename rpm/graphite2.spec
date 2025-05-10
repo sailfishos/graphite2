@@ -5,6 +5,8 @@ Release:    1
 License:    (LGPLv2+ or GPLv2+ or MPLv1.1) and (Netscape or GPLv2+ or LGPLv2+)
 URL:        http://graphite.sil.org
 Source0:    %{name}-%{version}.tar.bz2
+# From https://github.com/silnrsi/graphite/pull/92
+Patch1:     0001-CMake-Raised-required-version-to-3.5.patch
 BuildRequires: pkgconfig(freetype2)
 BuildRequires: cmake
 BuildRequires: python3-base
@@ -23,27 +25,25 @@ Requires: %{name} = %{version}
 Headers and auxiliary files for developing applications with %{name}.
 
 %prep
-%autosetup -n %{name}-%{version}/upstream
+%autosetup -p1 -n %{name}-%{version}/upstream
 
 %build
-%cmake .
-%make_build
+%cmake
+%cmake_build
 
 %install
-%make_install
+%cmake_install
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-,root,root,-)
 %license LICENSE COPYING
 %{_bindir}/gr2fonttest
 %{_libdir}/libgraphite2.so.*
 
 %files devel
-%defattr(-,root,root,-)
 %{_includedir}/%{name}/
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/%{name}.pc
