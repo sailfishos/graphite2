@@ -7,6 +7,7 @@ URL:        http://graphite.sil.org
 Source0:    %{name}-%{version}.tar.bz2
 # From https://github.com/silnrsi/graphite/pull/92
 Patch1:     0001-CMake-Raised-required-version-to-3.5.patch
+Patch2:     0002-Add-missing-include.patch
 BuildRequires: pkgconfig(freetype2)
 BuildRequires: cmake
 BuildRequires: python3-base

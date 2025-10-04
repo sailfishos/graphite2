@@ -1,0 +1,22 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Matti=20Lehtim=C3=A4ki?= <matti.lehtimaki@jolla.com>
+Date: Sat, 4 Oct 2025 15:14:34 +0300
+Subject: [PATCH] Add missing <cstdint> include.
+
+Fixed build with gcc 15.
+---
+ tests/featuremap/featuremaptest.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/tests/featuremap/featuremaptest.cpp b/tests/featuremap/featuremaptest.cpp
+index 7ba52a7ce3216528839c92a1fa788224d672a7a0..8033d804bea14b883fa965c5c59c384e5447ac6b 100644
+--- a/tests/featuremap/featuremaptest.cpp
++++ b/tests/featuremap/featuremaptest.cpp
+@@ -20,6 +20,7 @@
+     internet at http://www.fsf.org/licenses/lgpl.html.
+ */
+ #include <cassert>
++#include <cstdint>
+ #include <cstdlib>
+ #include <fstream>
+ #include <iostream>
